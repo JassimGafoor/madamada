@@ -7,7 +7,7 @@ public class Slash : MonoBehaviour
 
     public GameObject myOwner;
     
-    public float duration = 2.0f;
+    public float duration = 0.6f;
     public float speed = 7.0f;
     
     public float myDirection;

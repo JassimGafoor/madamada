@@ -6,11 +6,8 @@ using UnityEngine.InputSystem;
 
 public class movement : MonoBehaviour
 {
-
     PlayerInput playerInput;
-
     CharacterController characterController;
-
     Vector2 currentMovementInput;
     Vector3 currentMovement;
     bool isMovementPressed;
@@ -19,10 +16,6 @@ public class movement : MonoBehaviour
     public float rotationFactorPerFrame = 5f;
     //movement speed multiplier
     public float speed = 3.0f;
-    public GameObject shield;
-    public GameObject dagger;
-    public GameObject slash;
-    public GameObject enemy;
     void Awake()
     {
         playerInput = new PlayerInput();
@@ -31,9 +24,6 @@ public class movement : MonoBehaviour
         playerInput.Controls.Move.started += onMovementInput;
         playerInput.Controls.Move.canceled += onMovementInput;
         playerInput.Controls.Move.performed += onMovementInput;
-
-
-
     }
 
     void OnEnable()
@@ -76,39 +66,5 @@ public class movement : MonoBehaviour
     {
         handleRotation();
         characterController.Move(currentMovement * Time.deltaTime * speed);
-        if( playerInput.Controls.Shield.triggered){
-            shieldAbility();
-        }
-        else if(playerInput.Controls.Dagger.triggered){
-            daggerAbility();
-        }
-        else if(playerInput.Controls.Slash.triggered){
-            slashAbility(transform.eulerAngles.y);
-        }
-        
     }
-
-
-    void shieldAbility(){
-        GameObject myShield = (GameObject) Instantiate(shield, transform.position, Quaternion.identity);
-        Shield shieldScript = myShield.GetComponent<Shield> ();
-        shieldScript.myOwner = this.gameObject;
-
-    }
-
-    void daggerAbility(){
-        GameObject myDagger = (GameObject) Instantiate(dagger, transform.position, Quaternion.identity);
-        Dagger daggerScript = myDagger.GetComponent<Dagger> ();
-        daggerScript.myOwner = this.gameObject;
-        daggerScript.target = enemy.gameObject;
-    }
-
-    void slashAbility(float yRotation){
-        GameObject mySlash = (GameObject) Instantiate(slash, transform.position, Quaternion.identity);
-        Slash slashScript = mySlash.GetComponent<Slash> ();
-        slashScript.myOwner = this.gameObject;
-        slashScript.myDirection = yRotation;
-    }
-        
-
 }
