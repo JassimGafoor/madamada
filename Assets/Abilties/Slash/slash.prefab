@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myOwner: {fileID: 0}
-  duration: 2
+  duration: 0.4
   speed: 7
   myDirection: 0
 --- !u!1001 &2716407834052289569

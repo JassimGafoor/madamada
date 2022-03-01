@@ -4,16 +4,22 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class Blink : MonoBehaviour
+public class Blink : MonoBehaviour, IHasCooldown
 {
-    
+    [Header("References")]
     private PlayerInput playerInput;
+    [SerializeField]private CooldownSystem cooldownSystem= null;
 
     CharacterController cc;
 
     public float distance;
     Vector3 destination;
-    bool blinking = false;
+
+    [Header("CooldownManager")]
+    [SerializeField] private int id = 4;
+    [SerializeField] private float cooldownDuration = 5;
+    public int Id => id;
+    public float CooldownDuration => cooldownDuration;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,16 +31,13 @@ public class Blink : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerInput.Controls.Blink.triggered){   
+        if(playerInput.Controls.Blink.triggered && !cooldownSystem.IsOnCooldown(id)){   
         calcDistance();
-        blinking = true;
+        cooldownSystem.PutOnCooldown(this);
         cc.enabled = false; //turn off character contorlelr so you can blink
-        }
-        else if(blinking){
-            
-            transform.position = destination;
-            blinking = false;
-            cc.enabled = true;
+        transform.position = destination;
+        cc.enabled = true;
+        Debug.Log("blink used");
         }
     }
 

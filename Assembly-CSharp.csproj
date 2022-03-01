@@ -43,6 +43,12 @@
      <Compile Include="Assets\player\player input.cs" />
      <Compile Include="Assets\Abilties\Blink\Blink.cs" />
      <Compile Include="Assets\Abilties\Shield\Shield.cs" />
+     <Compile Include="Assets\UI\animatecooldown.cs" />
+     <Compile Include="Assets\player\CooldownSystem.cs" />
+     <Compile Include="Assets\player\IHasCooldown.cs" />
+     <Compile Include="Assets\Abilties\Shield\ShieldAbility.cs" />
+     <Compile Include="Assets\Abilties\Slash\SlashAbility.cs" />
+     <Compile Include="Assets\Abilties\Dagger\DaggerAbility.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.26f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
@@ -264,9 +270,6 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.26f1\Editor\Data\Managed\UnityEngine\UnityEditor.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-        <HintPath>C:\Users\IIII\madamada\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.26f1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -628,9 +631,6 @@
     <Reference Include="Unity.TextMeshPro.Editor">
         <HintPath>C:\Users\IIII\madamada\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>C:\Users\IIII\madamada\Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.VisualEffectGraph.Runtime">
         <HintPath>C:\Users\IIII\madamada\Library\ScriptAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
     </Reference>
@@ -651,9 +651,6 @@
     </Reference>
     <Reference Include="Unity.InputSystem">
         <HintPath>C:\Users\IIII\madamada\Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-        <HintPath>C:\Users\IIII\madamada\Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
         <HintPath>C:\Users\IIII\madamada\Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
