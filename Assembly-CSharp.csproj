@@ -37,18 +37,20 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\player\movement.cs" />
+     <Compile Include="Assets\Abilties\Shield\ShieldAbility.cs" />
+     <Compile Include="Assets\player\IHasCooldown.cs" />
      <Compile Include="Assets\player\camerafollow.cs" />
      <Compile Include="Assets\Abilties\Slash\Slash.cs" />
      <Compile Include="Assets\Abilties\Dagger\Dagger.cs" />
+     <Compile Include="Assets\UI\animatecooldown.cs" />
      <Compile Include="Assets\player\player input.cs" />
      <Compile Include="Assets\Abilties\Blink\Blink.cs" />
-     <Compile Include="Assets\Abilties\Shield\Shield.cs" />
-     <Compile Include="Assets\UI\animatecooldown.cs" />
-     <Compile Include="Assets\player\CooldownSystem.cs" />
-     <Compile Include="Assets\player\IHasCooldown.cs" />
-     <Compile Include="Assets\Abilties\Shield\ShieldAbility.cs" />
      <Compile Include="Assets\Abilties\Slash\SlashAbility.cs" />
+     <Compile Include="Assets\player\CooldownSystem.cs" />
      <Compile Include="Assets\Abilties\Dagger\DaggerAbility.cs" />
+     <Compile Include="Assets\Abilties\Shield\Shield.cs" />
+     <Compile Include="Assets\Logic\GameManager.cs" />
+     <Compile Include="Assets\Logic\FloatVariable.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2020.3.26f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

@@ -19,6 +19,10 @@ public class CooldownSystem : MonoBehaviour
         cooldowns.Add(new CooldownData(cooldown));
     }
 
+    public void ResetAllCooldown(){
+        cooldowns.Clear();
+    }
+
     public bool IsOnCooldown(int id){
         foreach(CooldownData cooldown in cooldowns){
             if(cooldown.Id == id){

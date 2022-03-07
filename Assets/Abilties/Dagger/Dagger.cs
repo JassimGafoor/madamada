@@ -15,7 +15,9 @@ public class Dagger : MonoBehaviour
     void Start()
     {
         timer = duration;
-        
+        Physics.IgnoreLayerCollision(2,3);
+        Physics.IgnoreLayerCollision(2,7);
+
     }
 
     // Update is called once per frame
@@ -27,12 +29,22 @@ public class Dagger : MonoBehaviour
         
         if (timer <= 0){
             Death();
-        }else if(transform.position == target.transform.position){
-            Death();
         }
     }
 
     public void Death(){
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider target){
+        if(target.tag == "Enemy"){
+            Death();
+            Debug.Log("destroyed");
+            GameManager.EnemyKilled();
+        }
+        else if(target.tag == "Shield"){
+            Death();
+            Debug.Log("shieldhit no damage");
+        }
     }
 }

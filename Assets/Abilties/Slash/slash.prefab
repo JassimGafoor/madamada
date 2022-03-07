@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8275949971141331331}
   - component: {fileID: 1427055349005056873}
   - component: {fileID: -9090018240449300443}
+  - component: {fileID: -6891894872345943649}
   m_Layer: 2
   m_Name: slash
   m_TagString: Untagged
@@ -63,6 +64,22 @@ MonoBehaviour:
   duration: 0.4
   speed: 7
   myDirection: 0
+--- !u!54 &-6891894872345943649
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862779727761732298}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2716407834052289569
 PrefabInstance:
   m_ObjectHideFlags: 0

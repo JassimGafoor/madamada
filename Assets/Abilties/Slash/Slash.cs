@@ -27,6 +27,7 @@ public class Slash : MonoBehaviour
 
         
         transform.Translate(Vector3.forward *Time.deltaTime * speed);
+
         if (duration <= 0){
             Death();
         }
@@ -37,5 +38,9 @@ public class Slash : MonoBehaviour
 
     public void Death(){
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider target){
+        Debug.Log("hit registerd");
     }
 }

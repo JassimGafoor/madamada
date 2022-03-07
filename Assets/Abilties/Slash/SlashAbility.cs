@@ -32,16 +32,17 @@ public class SlashAbility : MonoBehaviour, IHasCooldown
 
     void Update(){
         if( playerInput.Controls.Slash.triggered && !cooldownSystem.IsOnCooldown(id)){
-            slashAbility(transform.eulerAngles.y);
+            slashAbility(transform.eulerAngles.y, 0.9f);
             cooldownSystem.PutOnCooldown(this);
         }
     }
 
-    void slashAbility(float yRotation){
+    void slashAbility(float yRotation, float duration){
         GameObject mySlash = (GameObject) Instantiate(slash, transform.position, Quaternion.identity);
         Slash slashScript = mySlash.GetComponent<Slash> ();
         slashScript.myOwner = this.gameObject;
         slashScript.myDirection = yRotation;
+        slashScript.duration = duration;
     }
 
 }

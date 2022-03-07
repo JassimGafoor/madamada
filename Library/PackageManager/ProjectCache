@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637813159585017795
-    m_Hash: 3344838717
+      ticks: 637817255211952901
+    m_Hash: 305912300
   m_LockFileStatus:
     m_FilePath: C:/Users/IIII/madamada/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637813159585207797
-    m_Hash: 777305914
+      ticks: 637817255211962912
+    m_Hash: 1665191290
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:

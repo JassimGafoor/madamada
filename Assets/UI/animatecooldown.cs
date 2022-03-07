@@ -26,6 +26,9 @@ public class animatecooldown : MonoBehaviour, IHasCooldown
         if(cooldownSystem.IsOnCooldown(id)){
             abilityImage.fillAmount = cooldownSystem.GetRemainingDuration(id)/CooldownDuration;
         }
+        else{
+            abilityImage.fillAmount = 0;
+        }
     }
 
 
