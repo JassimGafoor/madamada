@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Scripts.cooldown;
 
 public class animatecooldown : MonoBehaviour, IHasCooldown
 {

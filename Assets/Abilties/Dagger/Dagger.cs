@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Ability.Dagger{
+
 public class Dagger : MonoBehaviour
 {
 
@@ -47,4 +49,5 @@ public class Dagger : MonoBehaviour
             Debug.Log("shieldhit no damage");
         }
     }
+}
 }

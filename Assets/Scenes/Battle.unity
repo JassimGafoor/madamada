@@ -626,7 +626,7 @@ MonoBehaviour:
   abilityImage: {fileID: 465239672}
   cooldownSystem: {fileID: 1023889127}
   id: 4
-  cooldownDuration: 5
+  cooldownDuration: 1
 --- !u!1001 &669680598
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -959,7 +959,7 @@ MonoBehaviour:
   abilityImage: {fileID: 780190872}
   cooldownSystem: {fileID: 1023889127}
   id: 1
-  cooldownDuration: 3
+  cooldownDuration: 1
 --- !u!1 &793209058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,7 +1988,7 @@ MonoBehaviour:
   abilityImage: {fileID: 1641432816}
   cooldownSystem: {fileID: 1023889127}
   id: 2
-  cooldownDuration: 3
+  cooldownDuration: 1
 --- !u!1001 &1683799793
 PrefabInstance:
   m_ObjectHideFlags: 0

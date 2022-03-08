@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace Ability.Slash{
 public class Slash : MonoBehaviour
 {
 
@@ -43,4 +44,5 @@ public class Slash : MonoBehaviour
     private void OnTriggerEnter(Collider target){
         Debug.Log("hit registerd");
     }
+}
 }

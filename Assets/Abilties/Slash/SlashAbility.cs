@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Scripts.cooldown;
+using Ability.Slash;
+
 
 public class SlashAbility : MonoBehaviour, IHasCooldown
 {
