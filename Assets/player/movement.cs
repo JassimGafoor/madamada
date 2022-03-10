@@ -1,16 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Mirror;
+using Cinemachine;
 
 
-public class movement : MonoBehaviour
+public class movement : NetworkBehaviour
 {
     PlayerInput playerInput;
     CharacterController characterController;
     Vector2 currentMovementInput;
     Vector3 currentMovement;
     bool isMovementPressed;
+
+    [SerializeField] private CinemachineVirtualCamera playerCamera;
 
     //rotation speed
     public float rotationFactorPerFrame = 5f;
@@ -24,6 +27,14 @@ public class movement : MonoBehaviour
         playerInput.Controls.Move.started += onMovementInput;
         playerInput.Controls.Move.canceled += onMovementInput;
         playerInput.Controls.Move.performed += onMovementInput;
+        
+    }
+
+    private void Start(){
+        if(isLocalPlayer){
+            playerCamera = CinemachineVirtualCamera.FindObjectOfType<CinemachineVirtualCamera>();
+            playerCamera.Follow = this.gameObject.transform;
+        }
     }
 
     void OnEnable()
@@ -38,28 +49,31 @@ public class movement : MonoBehaviour
 
     void handleRotation()
     {
-        Vector3 positionToLookAt;
+        if (isLocalPlayer){
+            Vector3 positionToLookAt;
         
-        positionToLookAt.x = currentMovement.x;
-        positionToLookAt.y = 0.0f;
-        positionToLookAt.z = currentMovement.z;
+            positionToLookAt.x = currentMovement.x;
+            positionToLookAt.y = 0.0f;
+            positionToLookAt.z = currentMovement.z;
 
-        Quaternion currentRotation = transform.rotation;
-        
-        if (isMovementPressed){
-            Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
-            transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime) ;
+            Quaternion currentRotation = transform.rotation;
+            
+            if (isMovementPressed){
+                Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
+                transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationFactorPerFrame * Time.deltaTime) ;
+            }
         }
-
+        
     }
 
     void onMovementInput (InputAction.CallbackContext context){
-        currentMovementInput = context.ReadValue<Vector2>();
+        if(isLocalPlayer){
+            currentMovementInput = context.ReadValue<Vector2>();
             currentMovement.x = currentMovementInput.x;
             currentMovement.z = currentMovementInput.y;
             isMovementPressed = currentMovementInput.x != 0 || currentMovementInput.y != 0;
+        }
     }
-    
 
     // Update is called once per frame
     void Update()
