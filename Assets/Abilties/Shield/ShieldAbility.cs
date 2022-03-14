@@ -2,25 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Scripts.cooldown;
+using Mirror;
 
-
-public class ShieldAbility : MonoBehaviour, IHasCooldown
+public class ShieldAbility : NetworkBehaviour, IHasCooldown
 {
 
     PlayerInput playerInput;
     [Header("References")]
     [SerializeField]private CooldownSystem cooldownSystem = null;
 
-    public GameObject shield;
+    
     [Header("CooldownManager")]
     [SerializeField] private int id = 3;
-    [SerializeField] private float cooldownDuration = 5;
+    [SerializeField] private float cooldownDuration = 5f;
     public int Id => id;
     public float CooldownDuration => cooldownDuration;
+    public float AbilityDuration = 2f;
+    float timer;
+    public bool isInvulnerable = false;
 
     void Awake()
     {
         playerInput = new PlayerInput();
+        timer = 0f;
+        transform.GetChild(1).gameObject.SetActive(false);
     }
     void OnEnable()
     {
@@ -33,16 +38,41 @@ public class ShieldAbility : MonoBehaviour, IHasCooldown
     }
 
     void Update(){
-        if( playerInput.Controls.Shield.triggered && !cooldownSystem.IsOnCooldown(id)){
-            shieldAbility();
-            cooldownSystem.PutOnCooldown(this);
+        if(!isLocalPlayer){
+            return;
         }
+            if( playerInput.Controls.Shield.triggered && !cooldownSystem.IsOnCooldown(id)){
+                shieldActive();
+                timer = AbilityDuration;
+                cooldownSystem.PutOnCooldown(this);
+            }
+        if(timer >= 0f){
+            timer -= Time.deltaTime;
+        }
+        else if(isInvulnerable == true){
+            shieldDisable();
+        }
+        
     }
 
-    void shieldAbility(){
-        GameObject myShield = (GameObject) Instantiate(shield, transform.position, Quaternion.identity);
-        Shield shieldScript = myShield.GetComponent<Shield> ();
-        shieldScript.myOwner = this.gameObject;
+    [Command] void shieldActive(){
+        
+        Debug.Log("Shield activated by player");
+        displayShield();
+    }
+    [Command] void shieldDisable(){
+        hideShield();
+        
+    }
+
+    [ClientRpc]void displayShield(){
+        isInvulnerable = true;
+        transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+    [ClientRpc]void hideShield(){
+        isInvulnerable = false;
+        transform.GetChild(1).gameObject.SetActive(false);
     }
 
 }

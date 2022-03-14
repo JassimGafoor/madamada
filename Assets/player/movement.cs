@@ -23,7 +23,7 @@ public class movement : NetworkBehaviour
     {
         playerInput = new PlayerInput();
         characterController = GetComponent<CharacterController>();
-
+        Physics.IgnoreLayerCollision(3,3);
         playerInput.Controls.Move.started += onMovementInput;
         playerInput.Controls.Move.canceled += onMovementInput;
         playerInput.Controls.Move.performed += onMovementInput;
@@ -79,6 +79,6 @@ public class movement : NetworkBehaviour
     void Update()
     {
         handleRotation();
-        characterController.Move(currentMovement * Time.deltaTime * speed);
+        characterController.SimpleMove(currentMovement* speed);
     }
 }

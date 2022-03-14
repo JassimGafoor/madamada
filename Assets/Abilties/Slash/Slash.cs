@@ -1,48 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace Ability.Slash{
-public class Slash : MonoBehaviour
-{
-
-    public GameObject myOwner;
-    
-    public float duration = 0.6f;
-    public float speed = 7.0f;
-    
-    public float myDirection;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public class Slash : NetworkBehaviour
     {
-        transform.Rotate(0,myDirection,0,Space.Self);
-        
-    }
+        public float force = 50f;
+        public Rigidbody rigidBody;
+        float duration = 2f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        duration -= Time.deltaTime;
-
-        
-        transform.Translate(Vector3.forward *Time.deltaTime * speed);
-
-        if (duration <= 0){
-            Death();
+        public override void OnStartServer(){
+            Invoke(nameof(DestroySelf), duration);
         }
-        
+        void Update(){
+            rigidBody.AddForce(transform.forward * force);
+        }
 
-        
-    }
 
-    public void Death(){
-        Destroy(gameObject);
-    }
+        [Server] void DestroySelf()
+        {
+            NetworkServer.Destroy(gameObject);
+        }
 
-    private void OnTriggerEnter(Collider target){
-        Debug.Log("hit registerd");
     }
-}
 }

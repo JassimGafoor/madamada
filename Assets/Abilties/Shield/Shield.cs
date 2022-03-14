@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Shield : MonoBehaviour
+using Mirror;
+public class Shield : NetworkBehaviour
 {
-
-    public GameObject myOwner;
     public float duration;
 
     float timer;
@@ -21,14 +19,12 @@ public class Shield : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
-        transform.position = myOwner.transform.position;
-
         if (timer <= 0){
             Death();
         }
     }
 
     public void Death(){
-        Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Scripts.cooldown;
 using Ability.Slash;
+using Mirror;
 
-
-public class SlashAbility : MonoBehaviour, IHasCooldown
+public class SlashAbility : NetworkBehaviour, IHasCooldown
 {
 
     PlayerInput playerInput;
@@ -13,6 +13,7 @@ public class SlashAbility : MonoBehaviour, IHasCooldown
     [SerializeField]private CooldownSystem cooldownSystem = null;
 
     public GameObject slash;
+
     [Header("CooldownManager")]
     [SerializeField] private int id = 1;
     [SerializeField] private float cooldownDuration = 5;
@@ -23,6 +24,7 @@ public class SlashAbility : MonoBehaviour, IHasCooldown
     {
         playerInput = new PlayerInput();
     }
+
     void OnEnable()
     {
         playerInput.Controls.Enable();
@@ -34,18 +36,21 @@ public class SlashAbility : MonoBehaviour, IHasCooldown
     }
 
     void Update(){
+        if(!isLocalPlayer){
+            return;
+        }
         if( playerInput.Controls.Slash.triggered && !cooldownSystem.IsOnCooldown(id)){
-            slashAbility(transform.eulerAngles.y, 0.9f);
+            slashAnimation(transform.rotation);
             cooldownSystem.PutOnCooldown(this);
         }
     }
 
-    void slashAbility(float yRotation, float duration){
-        GameObject mySlash = (GameObject) Instantiate(slash, transform.position, Quaternion.identity);
-        Slash slashScript = mySlash.GetComponent<Slash> ();
-        slashScript.myOwner = this.gameObject;
-        slashScript.myDirection = yRotation;
-        slashScript.duration = duration;
+    void calcHit(){
+        
+    }
+    [Command] void slashAnimation(Quaternion _viewDirection){
+        GameObject slashClone = Instantiate(slash, transform.position, _viewDirection);
+        NetworkServer.Spawn(slashClone, connectionToClient);
     }
 
 }
