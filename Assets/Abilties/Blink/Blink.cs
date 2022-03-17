@@ -51,7 +51,7 @@ public class Blink : MonoBehaviour, IHasCooldown
                 if(hit.distance < 0.25f){
                     destination = transform.position;
                 }
-                else if(hit.distance > 2f){
+                else if(hit.distance > distance){
                     destination = transform.position + transform.forward*distance;
                 }
                 else{

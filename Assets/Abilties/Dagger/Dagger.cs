@@ -19,7 +19,7 @@ public class Dagger : MonoBehaviour
         timer = duration;
         Physics.IgnoreLayerCollision(2,3);
         Physics.IgnoreLayerCollision(2,7);
-
+        
     }
 
     // Update is called once per frame
@@ -29,6 +29,9 @@ public class Dagger : MonoBehaviour
     
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, Time.deltaTime * speed );
         
+        transform.LookAt(target.transform.position, Vector3.up);
+
+
         if (timer <= 0){
             Death();
         }
