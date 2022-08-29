@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using Scripts.cooldown;
 
+
 public class animatecooldown : MonoBehaviour, IHasCooldown
 {
     public Image abilityImage;
-    [SerializeField]private CooldownSystem cooldownSystem= null;
+    public CooldownSystem cooldownSystem;
 
     [SerializeField] private int id = 1;
     [SerializeField] private float cooldownDuration = 5f;
@@ -18,17 +19,25 @@ public class animatecooldown : MonoBehaviour, IHasCooldown
     // Start is called before the first frame update
     void Start()
     {
-        abilityImage.fillAmount = 0;
+        if(cooldownSystem == null){
+            abilityImage.fillAmount = 0;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(cooldownSystem.IsOnCooldown(id)){
-            abilityImage.fillAmount = cooldownSystem.GetRemainingDuration(id)/CooldownDuration;
+        if(cooldownSystem == null){
+            
+
         }
         else{
-            abilityImage.fillAmount = 0;
+                if(cooldownSystem.IsOnCooldown(id)){
+                    abilityImage.fillAmount = cooldownSystem.GetRemainingDuration(id)/CooldownDuration;
+                }
+                else{
+                    abilityImage.fillAmount = 0;
+                }
         }
     }
 

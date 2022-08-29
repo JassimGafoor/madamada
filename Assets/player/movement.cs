@@ -12,6 +12,7 @@ public class movement : NetworkBehaviour
     Vector2 currentMovementInput;
     Vector3 currentMovement;
     bool isMovementPressed;
+    PlayerState playerState;
 
     [SerializeField] private CinemachineVirtualCamera playerCamera;
 
@@ -27,6 +28,7 @@ public class movement : NetworkBehaviour
         playerInput.Controls.Move.started += onMovementInput;
         playerInput.Controls.Move.canceled += onMovementInput;
         playerInput.Controls.Move.performed += onMovementInput;
+        playerState = GetComponent<PlayerState>();
         
     }
 
@@ -77,8 +79,10 @@ public class movement : NetworkBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        handleRotation();
-        characterController.SimpleMove(currentMovement* speed);
+    {   
+        if(playerState.isDead == false){
+            handleRotation();
+            characterController.SimpleMove(currentMovement* speed);
+        }
     }
 }

@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace Scripts.cooldown{
 
     public class CooldownSystem : MonoBehaviour
     {
         private readonly List<CooldownData> cooldowns = new List<CooldownData>();
-
         // Start is called before the first frame update
-        
+    
 
         // Update is called once per frame
         private void Update(){

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Scripts.cooldown;
 using Mirror;
-
+using Ability;
 public class ShieldAbility : NetworkBehaviour, IHasCooldown
 {
 
@@ -19,13 +19,16 @@ public class ShieldAbility : NetworkBehaviour, IHasCooldown
     public float CooldownDuration => cooldownDuration;
     public float AbilityDuration = 2f;
     float timer;
-    public bool isInvulnerable = false;
+
+    PlayerState playerState;
+    
 
     void Awake()
     {
         playerInput = new PlayerInput();
         timer = 0f;
         transform.GetChild(1).gameObject.SetActive(false);
+        playerState =  GetComponent<PlayerState>();
     }
     void OnEnable()
     {
@@ -49,30 +52,31 @@ public class ShieldAbility : NetworkBehaviour, IHasCooldown
         if(timer >= 0f){
             timer -= Time.deltaTime;
         }
-        else if(isInvulnerable == true){
+        else if(playerState.isInvulnerable == true){
             shieldDisable();
         }
         
     }
 
     [Command] void shieldActive(){
-        
-        Debug.Log("Shield activated by player");
+        playerState.isInvulnerable = true;
         displayShield();
     }
     [Command] void shieldDisable(){
         hideShield();
-        
+        playerState.isInvulnerable = false;
     }
 
     [ClientRpc]void displayShield(){
-        isInvulnerable = true;
+        
         transform.GetChild(1).gameObject.SetActive(true);
     }
 
     [ClientRpc]void hideShield(){
-        isInvulnerable = false;
+        
         transform.GetChild(1).gameObject.SetActive(false);
     }
+
+    
 
 }

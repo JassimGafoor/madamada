@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace Ability.Dagger{
 
-public class Dagger : MonoBehaviour
+public class Dagger : NetworkBehaviour
 {
 
     public GameObject myOwner;
@@ -17,9 +18,6 @@ public class Dagger : MonoBehaviour
     void Start()
     {
         timer = duration;
-        Physics.IgnoreLayerCollision(2,3);
-        Physics.IgnoreLayerCollision(2,7);
-        
     }
 
     // Update is called once per frame
@@ -45,7 +43,7 @@ public class Dagger : MonoBehaviour
         if(target.tag == "Enemy"){
             Death();
             Debug.Log("destroyed");
-            GameManager.EnemyKilled();
+            //GameManager.EnemyKilled();
         }
         else if(target.tag == "Shield"){
             Death();

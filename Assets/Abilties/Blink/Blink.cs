@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Scripts.cooldown;
+using Mirror;
 
 
-public class Blink : MonoBehaviour, IHasCooldown
+public class Blink : NetworkBehaviour, IHasCooldown
 {
     [Header("References")]
     private PlayerInput playerInput;
@@ -14,6 +15,7 @@ public class Blink : MonoBehaviour, IHasCooldown
     CharacterController cc;
 
     public float distance;
+    [SerializeField] private LayerMask player;
     Vector3 destination;
 
     [Header("CooldownManager")]
@@ -32,19 +34,22 @@ public class Blink : MonoBehaviour, IHasCooldown
     // Update is called once per frame
     void Update()
     {
+        if(!isLocalPlayer){
+            return;
+        }
         if(playerInput.Controls.Blink.triggered && !cooldownSystem.IsOnCooldown(id)){   
-        calcDistance();
-        cooldownSystem.PutOnCooldown(this);
-        cc.enabled = false; //turn off character contorlelr so you can blink
-        transform.position = destination;
-        cc.enabled = true;
-        Debug.Log("blink used");
+            calcDistance();
+            cooldownSystem.PutOnCooldown(this);
+            cc.enabled = false; //turn off character contorlelr so you can blink
+            transform.position = destination;
+            cc.enabled = true;
+            Debug.Log("blink used");
         }
     }
 
     void calcDistance(){
         RaycastHit hit;
-            if(Physics.Raycast(transform.position, transform.forward, out hit, distance + 0.5f)){
+            if(Physics.Raycast(transform.position, transform.forward, out hit, distance + 0.5f,~player)){
                 float dist = Vector3.Distance(transform.position, hit.point);
                 Debug.Log(hit.distance);
                 Debug.DrawLine(transform.position, hit.point, Color.red, 2f);

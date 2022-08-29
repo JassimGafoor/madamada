@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 8593006989074580591}
   - component: {fileID: -596279846503004163}
   - component: {fileID: 7259388815535452532}
+  - component: {fileID: 4873938165277379664}
+  - component: {fileID: 6255935889915289343}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -173,8 +175,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c36e5784887c96c488dbd710fd91023a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   cooldownSystem: {fileID: 8593006989074580578}
   distance: 10
+  player:
+    serializedVersion: 2
+    m_Bits: 8
   id: 4
   cooldownDuration: 1
 --- !u!114 &8593006989074580578
@@ -207,7 +214,6 @@ MonoBehaviour:
   id: 3
   cooldownDuration: 5
   AbilityDuration: 2
-  isInvulnerable: 0
 --- !u!114 &8593006989074580568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +229,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerCamera: {fileID: 0}
-  rotationFactorPerFrame: 5
+  rotationFactorPerFrame: 10
   speed: 7
 --- !u!114 &8593006989074580576
 MonoBehaviour:
@@ -242,7 +248,7 @@ MonoBehaviour:
   cooldownSystem: {fileID: 8593006989074580578}
   slash: {fileID: 6862779727761732298, guid: 1ad27251cf63a314f8f0ff18b4df4a46, type: 3}
   id: 1
-  cooldownDuration: 1
+  cooldownDuration: 5
 --- !u!114 &8593006989074580591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +319,39 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &4873938165277379664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8593006989074580570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde9e8405e1dc9340b75bbcfc0b23c85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  teamID: 0
+  playerID: 0
+--- !u!114 &6255935889915289343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8593006989074580570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623ec5c1d3a5b3748974a67b31be19f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  isInvulnerable: 0
+  isDead: 0
+  canvas: {fileID: 0}
 --- !u!1 &8593006989290322108
 GameObject:
   m_ObjectHideFlags: 0
